@@ -16,28 +16,7 @@
 
 import os, sys
 
-from dotenv import load_dotenv
+PROJECT_DIR = os.path.dirname(__file__)
 
-import utils
-
-class Config:
-
-    # Your CuLearn username
-    # Will try checking CULEARN_USER environment variable if not set
-    username = ""
-    # Your CuLearn password
-    # Will try checking CULEARN_PASS environment variable if not set
-    password = ""
-
-    # Location of your students file
-    # Defaults to /path/to/this/project/students
-    students_file = "" or utils.project_path("students")
-
-    @staticmethod
-    def setup():
-        load_dotenv()
-
-        if Config.username == "":
-            Config.username = os.getenv('CULEARN_USER')
-        if Config.password == "":
-            Config.password = os.getenv('CULEARN_PASS')
+def project_path(p):
+    return os.path.realpath(os.path.join(PROJECT_DIR, '..', p))

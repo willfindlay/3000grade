@@ -25,3 +25,4 @@ from culearn import CuLearn
 if __name__ == "__main__":
     print(Config.username)
     print(Config.password)
+    print(Config.students_file)
