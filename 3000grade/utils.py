@@ -18,5 +18,17 @@ import os, sys
 
 PROJECT_DIR = os.path.dirname(__file__)
 
+# Return absolute path to a file within this project directory
 def project_path(p):
     return os.path.realpath(os.path.join(PROJECT_DIR, '..', p))
+
+def maybe_create_directory(p):
+    if not os.path.exists(os.path.realpath(p)):
+        os.makedirs(os.path.realpath(p))
+
+# Create file if it doesn't exist
+def maybe_create(p):
+    if not os.path.exists(os.path.realpath(p)):
+        maybe_create_directory(os.path.join(p, '..'))
+        f = open(p, 'w')
+        f.close()

@@ -37,6 +37,8 @@ class Config:
     def setup():
         load_dotenv()
 
+        utils.maybe_create(Config.students_file)
+
         if Config.username == "":
             Config.username = os.getenv('CULEARN_USER')
         if Config.password == "":

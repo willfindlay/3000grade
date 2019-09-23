@@ -18,4 +18,5 @@ from config import Config
 
 class CuLearn:
     def __init__(self):
-        pass
+        with open(Config.students_file) as f:
+            pass
