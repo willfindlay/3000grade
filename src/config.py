@@ -16,9 +16,7 @@
 
 import os, sys
 
-from dotenv import load_dotenv
-
-import utils
+from src import utils
 
 class Config:
 
@@ -29,17 +27,29 @@ class Config:
     # Will try checking CULEARN_PASS environment variable if not set
     password = ""
 
-    # Location of your students file
-    # Defaults to /path/to/this/project/students
-    students_file = "" or utils.project_path("students")
+    # Location of assinged TA folder
+    # Defaults to /path/to/this/project/tas
+    tas_file = "" or utils.project_path("tas")
+
+    course_page_url = "https://culearn.carleton.ca/moodle/course/view.php?id=131843"
+    export_grades_url = "https://culearn.carleton.ca/moodle/grade/export/txt/export.php?id=131843"
 
     @staticmethod
     def setup():
-        load_dotenv()
+        try:
+            from dotenv import load_dotenv
+            load_dotenv()
+        except ModuleNotFoundError:
+            pass
 
-        utils.maybe_create(Config.students_file)
+        #utils.maybe_create(Config.students_file)
 
         if Config.username == "":
             Config.username = os.getenv('CULEARN_USER')
         if Config.password == "":
             Config.password = os.getenv('CULEARN_PASS')
+
+        if not Config.username:
+            raise Exception("Please set your cuLearn username as CULEARN_USER environment variable or in src/config.py")
+        if not Config.password:
+            raise Exception("Please set your cuLearn password as CULEARN_PASS environment variable or in src/config.py")

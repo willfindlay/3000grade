@@ -16,11 +16,25 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import argparse
+import re
+
 # This has to be before any other local modules are loaded
-from config import Config
+from src.config import Config
 Config.setup()
 
-from culearn import CuLearn
+from src.grade3000 import Grade3000
 
 if __name__ == "__main__":
-    culearn = CuLearn()
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument('-r', '--random', help='Distribute students randomly instead of by assigned TA', dest='random', action='store_true')
+    parser.add_argument('-s', '--sync', help='Update the list of assigned TAs', dest='sync', action='store_true')
+    parser.add_argument('assignment', help='Which assignment to grade. Format like: A1, or T2, etc.', type=str)
+
+    args = parser.parse_args()
+
+    if not re.match(r"^[AT]\d+$", args.assignment):
+        raise Exception("Please format your assignment name like A1, T2, etc.")
+
+    grade3000 = Grade3000(args)
