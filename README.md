@@ -1,5 +1,8 @@
 # 3000grade
 
+Simplify your life as a TA. The script keeps track of the assignment total,
+prompts you for feedback, and automatically generates pretty feedback files for each student.
+
 ## Requirements
 
 - Python 3.7
