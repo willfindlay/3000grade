@@ -15,8 +15,15 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import os, sys
+from .config import Config
 
 PROJECT_DIR = os.path.dirname(__file__)
+
+def dir_path(p):
+    if os.path.isdir(p):
+        return p
+    else:
+        raise NotADirectoryError(p)
 
 # Return absolute path to a file within this project directory
 def project_path(p):
@@ -32,3 +39,15 @@ def maybe_create(p):
         maybe_create_directory(os.path.join(p, '..'))
         f = open(p, 'w')
         f.close()
+
+def err(s):
+    print(f"{Config.Colors.red}ERROR: {s}{Config.Colors.end}")
+
+def warn(s):
+    print(f"{Config.Colors.yellow}WARNING: {s}{Config.Colors.end}")
+
+def info(s):
+    print(f"{Config.Colors.green}{s}{Config.Colors.end}")
+
+def prompt(s, end=' '):
+    print(f"{Config.Colors.blue}{s}{Config.Colors.end}", end=end)

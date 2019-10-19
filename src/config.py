@@ -16,40 +16,30 @@
 
 import os, sys
 
-from src import utils
-
 class Config:
+    hard_divider = "="
+    soft_divider = "-"
 
-    # Your CuLearn username
-    # Will try checking CULEARN_USER environment variable if not set
-    username = ""
-    # Your CuLearn password
-    # Will try checking CULEARN_PASS environment variable if not set
-    password = ""
+    next_after_deduct = True
 
-    # Location of assinged TA folder
-    # Defaults to /path/to/this/project/tas
-    tas_file = "" or utils.project_path("tas")
+    encouragement = ["Awesome!","Great!","Good job!",
+            "Fantastic!","Keep it up!","Great job!",
+            "Perfect!","Perfect answer!","Great work!",
+            "A cogent response!","Well said!","Full marks!",
+            "Well done!","Superb!","Excellent!",
+            "Excellent job!","Good work!"]
 
-    course_page_url = "https://culearn.carleton.ca/moodle/course/view.php?id=131843"
-    export_grades_url = "https://culearn.carleton.ca/moodle/grade/export/txt/export.php?id=131843"
+    class Colors:
+        black   = u"\u001b[30m"
+        red     = u"\u001b[31m"
+        green   = u"\u001b[32m"
+        yellow  = u"\u001b[33m"
+        blue    = u"\u001b[34m"
+        magenta = u"\u001b[35m"
+        cyan    = u"\u001b[36m"
+        white   = u"\u001b[37m"
+        end     = u"\u001b[0m"
 
     @staticmethod
     def setup():
-        try:
-            from dotenv import load_dotenv
-            load_dotenv()
-        except ModuleNotFoundError:
-            pass
-
-        #utils.maybe_create(Config.students_file)
-
-        if Config.username == "":
-            Config.username = os.getenv('CULEARN_USER')
-        if Config.password == "":
-            Config.password = os.getenv('CULEARN_PASS')
-
-        if not Config.username:
-            raise Exception("Please set your cuLearn username as CULEARN_USER environment variable or in src/config.py")
-        if not Config.password:
-            raise Exception("Please set your cuLearn password as CULEARN_PASS environment variable or in src/config.py")
+        pass
