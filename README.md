@@ -3,6 +3,10 @@
 Simplify your life as a TA. The script keeps track of the assignment total,
 prompts you for feedback, and automatically generates pretty feedback files for each student.
 
+## License
+
+GPL v3
+
 ## Requirements
 
 - Python 3.7
