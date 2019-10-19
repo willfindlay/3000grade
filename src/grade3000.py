@@ -207,7 +207,6 @@ class Grade3000:
                         info("Deduction cancelled")
                         continue
                     if Config.next_after_deduct:
-                        info("Moving to next question")
                         i += 1
                     continue
 
