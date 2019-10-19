@@ -20,11 +20,8 @@ import os, sys
 import argparse
 import re
 
-# This has to be before any other local modules are loaded
 from src.config import Config
-Config.setup()
-
-from src import utils
+from src.utils import dir_path
 from src.grade3000 import Grade3000
 
 EXAMPLES = f"""{Config.Colors.magenta}
@@ -75,7 +72,7 @@ if __name__ == "__main__":
             dest='student',
             metavar='directory',
             help="Directory containing student's assignment",
-            type=utils.dir_path)
+            type=dir_path)
 
     parser.add_argument('-a', '--assignment',
             dest='assignment',

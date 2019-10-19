@@ -39,7 +39,3 @@ class Config:
         cyan    = u"\u001b[36m"
         white   = u"\u001b[37m"
         end     = u"\u001b[0m"
-
-    @staticmethod
-    def setup():
-        pass
